@@ -2,19 +2,19 @@ import type { Metadata } from "next";
 import "~/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Roast Your Agent — get publicly humiliated by Claude",
+  title: "Roast My Agent — get publicly humiliated by Claude",
   description:
     "Paste your AI agent code. Get a brutally funny code review from Claude. Share the receipts.",
   openGraph: {
-    title: "Roast Your Agent",
+    title: "Roast My Agent",
     description:
       "Paste your AI agent code. Get publicly humiliated by Claude. Devs love getting roasted.",
     type: "website",
-    siteName: "Roast Your Agent",
+    siteName: "Roast My Agent",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Roast Your Agent",
+    title: "Roast My Agent",
     description:
       "Paste your AI agent code. Get publicly humiliated by Claude. Devs love getting roasted.",
   },

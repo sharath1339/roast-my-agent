@@ -1,4 +1,4 @@
-# 🔥 Roast Your Agent
+# 🔥 Roast My Agent
 
 Paste your AI agent code. Get publicly humiliated by Claude. Share the screenshot.
 

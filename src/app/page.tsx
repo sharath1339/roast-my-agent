@@ -94,7 +94,7 @@ export default function Home() {
           powered by claude
         </div>
         <h1 className="font-mono text-5xl font-black leading-[0.9] tracking-tight text-white sm:text-7xl">
-          roast your
+          roast my
           <br />
           <span className="text-burn-500">agent</span>
         </h1>
@@ -152,7 +152,7 @@ export default function Home() {
       </form>
 
       <footer className="mt-12 flex items-center justify-between font-mono text-xs text-zinc-600">
-        <span>built in a weekend with claude</span>
+        <span>made by sharath using claude</span>
         <span>v0.1</span>
       </footer>
     </main>

@@ -4,7 +4,7 @@ import { getRoast } from "~/lib/store";
 export const runtime = "nodejs";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Roast Your Agent";
+export const alt = "Roast My Agent";
 
 export default async function Image(props: { params: Promise<{ id: string }> }) {
   const { id } = await props.params;
@@ -70,7 +70,7 @@ export default async function Image(props: { params: Promise<{ id: string }> }) 
               background: "#ff5b1c",
             }}
           />
-          roast your agent
+          roast my agent
         </div>
 
         <div

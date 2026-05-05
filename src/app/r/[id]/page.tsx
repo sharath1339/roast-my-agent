@@ -9,9 +9,9 @@ type Props = { params: Promise<{ id: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const data = await getRoast(id);
-  if (!data) return { title: "Roast not found — Roast Your Agent" };
+  if (!data) return { title: "Roast not found — Roast My Agent" };
 
-  const title = `${data.roast.title} — Roast Your Agent`;
+  const title = `${data.roast.title} — Roast My Agent`;
   const description = data.roast.verdict;
 
   return {
