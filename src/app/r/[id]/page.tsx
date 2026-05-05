@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { EmailForm } from "~/components/email-form";
 import { ShareBar } from "~/components/share-bar";
+import { isEmailConfigured } from "~/lib/email";
 import { getRoast } from "~/lib/store";
 
 type Props = { params: Promise<{ id: string }> };
@@ -98,7 +99,7 @@ export default async function RoastPage({ params }: Props) {
         </section>
       </article>
 
-      <EmailForm id={id} title={roast.title} />
+      {isEmailConfigured() && <EmailForm id={id} title={roast.title} />}
 
       <section className="mt-8 overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-950 to-burn-900/30">
         <div className="px-8 py-8">
