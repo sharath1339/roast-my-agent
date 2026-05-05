@@ -129,7 +129,7 @@ export default async function Image(props: { params: Promise<{ id: string }> }) 
               fontWeight: 500,
             }}
           >
-            roasted by claude
+            roasted by claude · composio.dev
           </div>
         </div>
       </div>

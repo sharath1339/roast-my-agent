@@ -152,7 +152,18 @@ export default function Home() {
       </form>
 
       <footer className="mt-12 flex items-center justify-between font-mono text-xs text-zinc-600">
-        <span>made by sharath using claude</span>
+        <span>
+          made by <span className="text-zinc-400">sharath</span> at{" "}
+          <a
+            href="https://composio.dev?utm_source=roastmyagent&utm_medium=footer&utm_campaign=homepage"
+            target="_blank"
+            rel="noreferrer"
+            className="text-zinc-400 hover:text-burn-300"
+          >
+            composio
+          </a>{" "}
+          · roasts by claude
+        </span>
         <span>v0.1</span>
       </footer>
     </main>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { EmailForm } from "~/components/email-form";
 import { ShareBar } from "~/components/share-bar";
 import { getRoast } from "~/lib/store";
 
@@ -96,6 +97,35 @@ export default async function RoastPage({ params }: Props) {
           <p className="text-pretty text-zinc-200">{roast.redemption}</p>
         </section>
       </article>
+
+      <EmailForm id={id} title={roast.title} />
+
+      <section className="mt-8 overflow-hidden rounded-3xl border border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-950 to-burn-900/30">
+        <div className="px-8 py-8">
+          <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-burn-300">
+            <span className="size-1.5 rounded-full bg-burn-500" />
+            the way out
+          </div>
+          <h2 className="mt-3 text-balance text-2xl font-bold text-white sm:text-3xl">
+            Want an agent that doesn't get roasted?
+          </h2>
+          <p className="mt-3 text-pretty text-zinc-400">
+            Stop hand-rolling tool calls, OAuth flows, retry loops, and prompt
+            injection guards. Composio is the integration layer for AI agents —
+            1,000+ pre-built tools (Gmail, Slack, GitHub, Notion, Linear, …)
+            with auth, observability, and execution handled. Drop in 5 lines,
+            skip the weekend of glue code.
+          </p>
+          <a
+            href="https://composio.dev?utm_source=roastmyagent&utm_medium=cta&utm_campaign=result_card"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-white px-5 py-2.5 font-mono text-sm font-bold text-black transition hover:bg-burn-300"
+          >
+            try composio →
+          </a>
+        </div>
+      </section>
 
       <ShareBar id={id} title={roast.title} />
 

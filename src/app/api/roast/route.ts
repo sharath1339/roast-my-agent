@@ -1,11 +1,31 @@
 import { NextResponse } from "next/server";
 import { roastCode } from "~/lib/claude";
+import { checkRateLimit, getClientIp } from "~/lib/ratelimit";
 import { newId, saveRoast } from "~/lib/store";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
+  const ip = getClientIp(req);
+  const rl = await checkRateLimit(ip, "roast");
+  if (!rl.allowed) {
+    const minutes = Math.ceil(rl.resetSeconds / 60);
+    return NextResponse.json(
+      {
+        error: `Easy there, hot stuff. Limit is ${rl.limit} roasts per hour. Try again in ${minutes} min.`,
+      },
+      {
+        status: 429,
+        headers: {
+          "x-ratelimit-limit": String(rl.limit),
+          "x-ratelimit-remaining": String(rl.remaining),
+          "x-ratelimit-reset": String(rl.resetSeconds),
+        },
+      },
+    );
+  }
+
   let body: { code?: unknown; language?: unknown };
   try {
     body = (await req.json()) as { code?: unknown; language?: unknown };
