@@ -1,7 +1,7 @@
 import { Redis } from "@upstash/redis";
 
 const HOUR_SECONDS = 60 * 60;
-const LIMIT_PER_HOUR = 5;
+const DEFAULT_LIMIT_PER_HOUR = 5;
 
 let cachedRedis: Redis | null = null;
 function getRedis(): Redis | null {
@@ -23,11 +23,12 @@ export type RateLimitResult = {
 export async function checkRateLimit(
   ip: string,
   bucket: string,
+  limit: number = DEFAULT_LIMIT_PER_HOUR,
 ): Promise<RateLimitResult> {
   const r = getRedis();
   // No Upstash configured → don't block local dev.
   if (!r) {
-    return { allowed: true, limit: LIMIT_PER_HOUR, remaining: LIMIT_PER_HOUR, resetSeconds: HOUR_SECONDS };
+    return { allowed: true, limit, remaining: limit, resetSeconds: HOUR_SECONDS };
   }
 
   const windowStart = Math.floor(Date.now() / 1000 / HOUR_SECONDS);
@@ -38,12 +39,12 @@ export async function checkRateLimit(
     await r.expire(key, HOUR_SECONDS);
   }
 
-  const remaining = Math.max(0, LIMIT_PER_HOUR - count);
+  const remaining = Math.max(0, limit - count);
   const resetSeconds = HOUR_SECONDS - (Math.floor(Date.now() / 1000) % HOUR_SECONDS);
 
   return {
-    allowed: count <= LIMIT_PER_HOUR,
-    limit: LIMIT_PER_HOUR,
+    allowed: count <= limit,
+    limit,
     remaining,
     resetSeconds,
   };

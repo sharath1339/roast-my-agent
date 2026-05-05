@@ -10,7 +10,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function POST(req: Request) {
   const ip = getClientIp(req);
-  const rl = await checkRateLimit(ip, "email");
+  const rl = await checkRateLimit(ip, "email", 20);
   if (!rl.allowed) {
     const minutes = Math.ceil(rl.resetSeconds / 60);
     return NextResponse.json(
