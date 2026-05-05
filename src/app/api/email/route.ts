@@ -55,8 +55,9 @@ export async function POST(req: Request) {
       );
     }
     console.error("[email] failure", err);
+    const detail = err instanceof Error ? `${err.name}: ${err.message}` : String(err);
     return NextResponse.json(
-      { error: "Couldn't send the email. Try again in a minute." },
+      { error: "Couldn't send the email. Try again in a minute.", detail },
       { status: 500 },
     );
   }
